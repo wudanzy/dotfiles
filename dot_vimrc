@@ -1,0 +1,66 @@
+call plug#begin('~/.vim/plugged')
+
+" A source code browser plugin for Vim
+Plug 'ycm-core/YouCompleteMe'
+Plug 'Townk/vim-autoclose'
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree'
+Plug 'mbbill/undotree'
+Plug 'scrooloose/nerdcommenter'
+Plug '/usr/local/opt/fzf'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+
+" Initialize plugin system
+call plug#end()
+
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+
+" I think they are not useful anymore,
+" ready to delete
+" YouCompleteMe settings
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '>*'
+
+" AutoClose
+let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
+
+set number
+set incsearch
+set hlsearch
+set cindent
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set formatoptions=tcqro
+set spell 
+set spelllang=en
+set guifont=Monaco:h16
+set encoding=utf-8
+nnoremap <F4> :YcmDiags<CR>
+nnoremap <F6> :cp<CR>
+nnoremap <F7> :cn<CR>
+
+
+let mapleader = "-"
+nnoremap <leader>d dd
+nnoremap <leader>ev :split ~/.vimrc<cr>
+nnoremap <leader>sv :source ~/.vimrc<cr>
+nnoremap <leader>{ ^i{<cr><esc>$a<cr>}<esc>
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <silent>gd :YcmCompleter GoTo<CR>
+nnoremap <silent>fi :YcmCompleter FixIt<CR>
+nnoremap <leader>ff :FZF<CR>
+nnoremap <leader>fb :Buffers<CR>
+autocmd FileType python     :iabbrev <buffer> iff if:<left>
