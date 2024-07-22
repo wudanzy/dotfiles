@@ -1,0 +1,7 @@
+[core]
+	autocrlf = false
+	editor = vim
+[alias]
+	st = status
+	brl = branch --list
+	co = checkout
